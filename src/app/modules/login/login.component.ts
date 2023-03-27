@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/core/shared/services/login.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   requestToken: string;
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private router: Router) {
     this.username = '';
     this.password = '';
     this.requestToken = '';
@@ -56,6 +57,7 @@ export class LoginComponent implements OnInit {
       error: error => console.error('Error logging in', error),
       complete: () => console.log('completed')
     });
+    this.router.navigate(['movies'])
   }
 }
 

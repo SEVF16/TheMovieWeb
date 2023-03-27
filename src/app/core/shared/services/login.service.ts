@@ -7,7 +7,7 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class LoginService{
   private url = 'https://api.themoviedb.org/3';
-  private apiKey =
+  private apiKey = '';
   private requestToken: string = '';
 
 
