@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { ModulesRoutingModule } from './modules-routing.module';
 import { ModulesComponent } from './modules.component';
 import { MoviesComponent } from './movies/movies.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -17,7 +18,8 @@ import { MoviesComponent } from './movies/movies.component';
   imports: [
     ModulesRoutingModule,
     CoreModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: []

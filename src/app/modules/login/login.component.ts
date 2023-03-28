@@ -18,11 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.loginService.getToken().subscribe(
-    //   (token: string) => {
-    //     console.log(token);
-    //   }
-    // )
+
     const token = this.loginService.getTokenFromLocalStorage();
     if (token) {
       this.requestToken = token;
@@ -57,28 +53,7 @@ export class LoginComponent implements OnInit {
       error: error => console.error('Error logging in', error),
       complete: () => console.log('completed')
     });
-    this.router.navigate(['movies'])
+    this.router.navigate(['/movies'])
   }
 }
 
-  // onSubmit(){
-  //   //console.log(this.username);
-  //   this.loginService.login(this.username, this.password).subscribe({
-  //     next: response => console.log('Got response', response),
-  //     error: error => console.error('Error logging in', error),
-  //     complete: () => console.log('completed')
-  //   })
-  // }
-
-
-    //   response => {
-    //     console.log('Got response', response);
-    //   },
-    //   error => {
-    //     console.error('Error logging in', error);
-    //     this.errorMessage = 'Invalid username or password';
-    //   }
-    // );
-
-
-//}

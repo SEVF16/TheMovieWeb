@@ -1,30 +1,43 @@
-<div class="wrapper">
+<div class="container" *ngFor="let movie of movies">
+  <div class="card">
+    <div class="box">
+      <div class="content">
+        <h2><img [src]="urlImg + movie.poster_path" alt=""></h2>
+        <h3>{{movie.title}}</h3>
+        <p>{{movie.overview}}</p>
+        <a href="#">Read More</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="wrapper" *ngFor="let movie of movies">
 	<div class="main_card">
 		<div class="card_left">
 			<div class="card_datails">
-				<h1>Mission: Impossible – Fallout</h1>
+				<h1>{{movie.original_title}}</h1>
 				<div class="card_cat">
 					<p class="PG">PG - 13</p>
-					<p class="year">2018</p>
+					<p class="year">{{movie.release_date | date: 'yyyy'}}</p>
 					<p class="genre">Action | Adventure </p>
 					<p class="time">2h 28m</p>
 				</div>
-				<p class="disc">Ethan Hunt and his IMF team, along with some familiar allies, race against time after a mission gone wrong.</p>
+				<p class="disc">{{movie.overview}}</p>
 				<a href="https://www.imdb.com/title/tt4912910/" target="_blank">Read More</a>
 			<div class="social-btn">
-        <!-- WATCH TRAILER-->
+         WATCH TRAILER
 				<button>
 					<i class="fas fa-play"></i> SEE TRAILER
 				</button>
-				<!-- GET-->
+				 GET
 				<button>
 					<i class="fas fa-download"></i> DOWNLOAD
 				</button>
-				<!--USERS RATINGS-->
+				USERS RATINGS
 				<button>
 					<i class="fas fa-thumbs-up"></i> 97%
 				</button>
-				<!--BOOKMARK-->
+				BOOKMARK
 				<button>
 					<i class="fas fa-star"></i>
 				</button>
@@ -42,5 +55,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 

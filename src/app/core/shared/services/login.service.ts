@@ -7,7 +7,7 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class LoginService{
   private url = 'https://api.themoviedb.org/3';
-  private apiKey = '';
+  public apiKey = '';
   private requestToken: string = '';
 
 
@@ -27,7 +27,7 @@ export class LoginService{
       };
       return this.http.post<any>(loginUrl, body)
       .pipe(tap((response: any) => {
-        localStorage.setItem('tmdbToken', body.request_token)
+        localStorage.setItem('tmdbToken', response.request_token)
       }),catchError(this.handleError)
     );
     }

@@ -7,13 +7,17 @@ import { GetmoviesService } from 'src/app/core/shared/services/getmovies.service
   styleUrls: ['./movies.component.css']
 })
 export class MoviesComponent implements OnInit {
-
-  constructor(private serviceMovie: GetmoviesService) { }
+  movies: any;
+  urlImg: string;
+  constructor(private serviceMovie: GetmoviesService) {
+    this.urlImg = 'https://image.tmdb.org/t/p/original'
+   }
 
   ngOnInit(): void {
 
     this.serviceMovie.getMovie().subscribe((response: any ) =>{
-      console.log(response);
+      this.movies = response.results
+      console.log(response.results);
   })
   }
 
