@@ -5,7 +5,7 @@
         <h2><img [src]="urlImg + movie.poster_path" alt=""></h2>
         <h3>{{movie.title}}</h3>
         <p>{{movie.overview}}</p>
-        <a href="#">Read More</a>
+        <a (click)="seeDetail(movie.id)">Read More</a>
       </div>
     </div>
   </div>

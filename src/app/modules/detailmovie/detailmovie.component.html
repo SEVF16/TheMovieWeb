@@ -1,0 +1,33 @@
+
+<section class="movie-details" *ngFor="let detail of movie">
+
+  <div class="movie-img">
+      <img  [src]="urlImg + detail.poster_path" />
+  </div>
+
+<div class="movie-info">
+
+      <span class="movie-name">&nbsp;{{detail.original_title}} </span> {{detail.release_date | date: 'yyyy'}}
+
+    <div class="about-movie post-line">
+     {{detail.runtime}} min. | {{detail.genres }} | {{detail.release_date | date: 'dd/MM/yyyy'}}
+    </div>
+
+
+
+<div class="post-line">
+    <span>IMDB Rating :</span>&nbsp;9.2 / 10 from 216k users,
+    <span>Metascore : </span> 86
+</div>
+
+<div class="post-line">
+   <span>Director:</span>&nbsp; Ayan Mukerji<br/>
+   <span>Actor:</span>&nbsp; Amitabh Bachchan, Ranbir Kapoor, Alia Bhatt, Mouni Roy <br/>
+   <span>Official Site :</span>&nbsp; N/A <br/>
+</div>
+<br>
+   {{detail.overview}}
+
+</div>
+
+</section>

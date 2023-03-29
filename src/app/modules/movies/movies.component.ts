@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GetmoviesService } from 'src/app/core/shared/services/getmovies.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { GetmoviesService } from 'src/app/core/shared/services/getmovies.service
 export class MoviesComponent implements OnInit {
   movies: any;
   urlImg: string;
-  constructor(private serviceMovie: GetmoviesService) {
+  constructor(private serviceMovie: GetmoviesService, private router: Router) {
     this.urlImg = 'https://image.tmdb.org/t/p/original'
    }
 
@@ -21,4 +22,9 @@ export class MoviesComponent implements OnInit {
   })
   }
 
+
+  seeDetail(id:number){
+    console.log(id);
+    this.router.navigate([id])
+  }
 }

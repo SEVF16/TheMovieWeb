@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
       error: error => console.error('Error logging in', error),
       complete: () => console.log('completed')
     });
-    this.router.navigate(['/movies'])
+    this.router.navigate(['movies'])
   }
 }
 

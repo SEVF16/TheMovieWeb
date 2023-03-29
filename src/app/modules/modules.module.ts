@@ -6,6 +6,7 @@ import { ModulesRoutingModule } from './modules-routing.module';
 import { ModulesComponent } from './modules.component';
 import { MoviesComponent } from './movies/movies.component';
 import { CommonModule } from '@angular/common';
+import { DetailmovieComponent } from './detailmovie/detailmovie.component';
 
 
 
@@ -13,7 +14,8 @@ import { CommonModule } from '@angular/common';
   declarations: [
     ModulesComponent,
     LoginComponent,
-    MoviesComponent
+    MoviesComponent,
+    DetailmovieComponent
   ],
   imports: [
     ModulesRoutingModule,

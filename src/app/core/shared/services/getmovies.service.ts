@@ -14,5 +14,10 @@ export class GetmoviesService {
     return this.http.get(urlb);
   }
 
+  getDetailMovie(id: number) {
+    const urlb = `${this.url}/movie/${id}?api_key=${this.serviceKey.apiKey}`;
+    return this.http.get(urlb);
+  }
+
 
 }
