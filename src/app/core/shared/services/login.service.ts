@@ -7,137 +7,70 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class LoginService{
   private url = 'https://api.themoviedb.org/3';
-  public apiKey = '';
+  public apiKey = '233c5170639560f779bf7fe831e4f54e';
   private requestToken: string = '';
 
 
   constructor( private http: HttpClient) {}
 
-    getRequestToken(): Observable<any> {
-      const getTokeUrl = `${this.url}/authentication/token/new?api_key=${this.apiKey}`;
-      return this.http.get<any>(getTokeUrl);
-    }
+  public getRequestToken(): Observable<{ request_token: string }> {
+    const url = `${this.url}/authentication/token/new?api_key=${this.apiKey}`;
+    return this.http.get<{ request_token: string }>(url);
+  }
 
-    login(username: string, password: string, requestToken: string): Observable<any> {
-      const loginUrl = `${this.url}/authentication/token/validate_with_login?api_key=${this.apiKey}`;
-      const body = {
-        username,
-        password,
-        request_token: requestToken
-      };
-      return this.http.post<any>(loginUrl, body)
-      .pipe(tap((response: any) => {
-        localStorage.setItem('tmdbToken', response.request_token)
-      }),catchError(this.handleError)
+  public login(username: string, password: string, requestToken: string): Observable<{ request_token: string }> {
+    const url = `${this.url}/authentication/token/validate_with_login?api_key=${this.apiKey}`;
+    const body = {
+      username,
+      password,
+      request_token: requestToken
+    };
+    return this.http.post<{ request_token: string }>(url, body).pipe(
+      tap((response: { request_token: string }) => {
+        localStorage.setItem('tmdbToken', response.request_token);
+      }),
+      catchError((error: any) => {
+        console.error(error);
+        return throwError(() => new Error('Something went wrong'));
+      })
     );
-    }
+  }
 
-    getTokenFromLocalStorage() {
-      return localStorage.getItem('tmdbToken');
-    }
-
-    private handleError(error: any): Observable<never> {
-      console.error(error);
-      return throwError(() => new Error ('Something went wrong'));
-    }
-
-
+  public getTokenFromLocalStorage(): string | null {
+    return localStorage.getItem('tmdbToken');
+  }
   }
 
 
 
-  // login(username: string, password: string): Observable<any> {
+  // getRequestToken(): Observable<any> {
+  //   const getTokeUrl = `${this.url}/authentication/token/new?api_key=${this.apiKey}`;
+  //   return this.http.get<any>(getTokeUrl);
+  // }
 
-  //   this.getToken().subscribe(
-  //       (value: string) => {
-  //         this.token = value;
-  //         console.log(this.token);
-  //       }
-  //     ).
-  //   console.log(this.token);
-  //   const loginUrl = `${this.url}/authentication/token/validate_with_login`;
+  // login(username: string, password: string, requestToken: string): Observable<any> {
+  //   const loginUrl = `${this.url}/authentication/token/validate_with_login?api_key=${this.apiKey}`;
   //   const body = {
-  //     username: username,
-  //     password: password,
-  //     "request_token": this.token,
+  //     username,
+  //     password,
+  //     request_token: requestToken
   //   };
-  //   const headers = new HttpHeaders().set('Content-Type', 'application/json');
-  //   return this.http.post(loginUrl, body, { headers: headers }).pipe(
-  //     map(res => res),
-  //     catchError(this.handleError)
-  //   );
+  //   return this.http.post<any>(loginUrl, body)
+  //   .pipe(tap((response: any) => {
+  //     localStorage.setItem('tmdbToken', response.request_token)
+  //   }),catchError(this.handleError)
+  // );
   // }
 
-  // getToken() {
+  // getTokenFromLocalStorage() {
+  //   return localStorage.getItem('tmdbToken');
+  // }
 
-  //   const getTokenUrl = `${this.url}/authentication/token/new?api_key=${this.apiKey}`;
-
-  //   return this.http.get(getTokenUrl).pipe(
-  //     map((response: any) => {
-  //       return response.request_token;
-  //     }),
-  //     catchError(this.handleError)
-  //   );
+  // private handleError(error: any): Observable<never> {
+  //   console.error(error);
+  //   return throwError(() => new Error ('Something went wrong'));
   // }
 
 
-
-
-  //--------------------------------------------------------------------------------------------
-
-      // login(username: string, password: string): Observable<any>{
-    //   const httpOptions = {
-    //     headers: new HttpHeaders({
-    //       'Content-Type': 'application/json'
-    //     })
-    //   };
-    //     const Loginurl = `${this.url}/authentication/token/new?api_key=${this.apiKey}`;
-    //     const body = {
-    //       username: username,
-    //       password: password,
-    //       request_token: true
-    //     };
-    //     return this.http.get(Loginurl)
-    //     .pipe(
-    //       catchError(this.handleError)
-    //     )
-    //     .pipe(
-    //       map( (data : any) =>
-    //         {const token = data.request_token
-    //           const validateUrl = `${this.url}/authentication/token/validate_with_login`;
-    //           const validateBody = {
-    //             username: username,
-    //             password: password,
-    //             request_token: token};
-    //           return this.http.post(validateUrl, validateBody, httpOptions)
-    //             .pipe(
-    //               catchError(this.handleError)
-    //             );
-    //         }
-    //       ),map((data:any) =>{
-    //             const sessionUrl = `${this.url}/authentication/session/new`;
-    //             const sessionBody = {
-    //               request_token: data.request_token
-    //             };
-    //             return this.http.post(sessionUrl, sessionBody, httpOptions)
-    //             .pipe(
-    //               catchError(this.handleError)
-    //             );
-    //           }),tap((data: any) => {
-    //             localStorage.setItem('session_id', data.session_id);
-    //             this.loggedIn = true;
-    //             return true;
-    //           }),
-    //           catchError(this.handleError)
-    //   )
-    // }
-
-    // logout() {
-    //   localStorage.removeItem('session_id');
-    //   this.loggedIn = false;
-    // }
-
-    // isLoggedIn() {
-    //   return this.loggedIn;
-    // }
+  //---------------------------------------------------------------------------------------
 

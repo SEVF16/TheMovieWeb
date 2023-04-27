@@ -23,6 +23,8 @@ import { FooterComponent } from './components/footer/footer.component';
     HttpClientModule,
     RouterModule,
     NotfoundComponent,
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class SharedModule { }

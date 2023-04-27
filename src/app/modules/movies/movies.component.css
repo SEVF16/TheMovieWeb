@@ -1,19 +1,20 @@
 
 
 body {
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   background: #232427;
 
+
 }
 .container {
   display: inline-flex;
-  justify-content: center;
-  align-items: center;
+
   max-width: 1600px;
-  margin: 40px 60px;
+  margin: 40px ;
+
 
 }
 .container .card {
@@ -25,7 +26,7 @@ body {
     5px 5px 5px rgba(0, 0, 0, 0.3),
     -5px -5px 15px rgba(255, 255, 255, 0.1);
   border-radius: 15px;
-  margin: 30px;
+  margin: 37.5px;
 }
 .container .card .box {
   position: absolute;
