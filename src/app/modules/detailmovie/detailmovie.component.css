@@ -44,11 +44,10 @@
  }
 
  .movie-title {
+
   font-size: 64px;
   font-weight: bold;
-  background-image: linear-gradient(45deg);
-  background-clip: text;
-
+  line-height: 1;
  }
 
  .movie-detail .set {

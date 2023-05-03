@@ -6,25 +6,29 @@ import { RouterModule } from '@angular/router';
 import { LoginService } from './services/login.service';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-
+import { SlideComponent } from './components/slide/slide.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
     NotfoundComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SlideComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     RouterModule,
+    MatRadioModule
   ],
   exports:[
     HttpClientModule,
     RouterModule,
     NotfoundComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SlideComponent
   ]
 })
 export class SharedModule { }

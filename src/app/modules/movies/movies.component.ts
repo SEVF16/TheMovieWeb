@@ -18,7 +18,7 @@ export class MoviesComponent implements OnInit {
 
     this.serviceMovie.getMovie().subscribe((response: any ) =>{
       this.movies = response.results
-      console.log(response.results);
+
   })
   }
 

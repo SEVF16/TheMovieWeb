@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginService } from './login.service';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable, forkJoin, map } from 'rxjs';
 import { Movie } from '../../models/Movie.interface';
 import { AllCast, Cast } from '../../models/Cast.interface';
 @Injectable({
@@ -15,6 +15,8 @@ export class GetmoviesService {
     const urlb = `${this.url}/movie/popular?api_key=${this.serviceKey.apiKey}`;
     return this.http.get(urlb);
   }
+
+
 
   getDetailMovie(id: number): Observable<[Movie, AllCast]>{
     const urlmovie = `${this.url}/movie/${id}?api_key=${this.serviceKey.apiKey}`;
