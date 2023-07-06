@@ -1,35 +1,3 @@
-<!--
-<section class="movie-details" *ngFor="let detail of movie">
-
-  <div class="movie-img">
-      <img  [src]="urlImg + detail.poster_path" />
-  </div>
-
-<div class="movie-info">
-
-      <span class="movie-name">&nbsp;{{detail.original_title}} </span> {{detail.release_date | date: 'yyyy'}}
-
-    <div class="about-movie post-line">
-     {{detail.runtime}} min. | {{detail.genres }} | {{detail.release_date | date: 'dd/MM/yyyy'}}
-    </div>
-
-
-
-<div class="post-line">
-    <span>IMDB Rating :</span>&nbsp;9.2 / 10 from 216k users,
-    <span>Metascore : </span> 86
-</div>
-
-<div class="post-line">
-   <span>Director:</span>&nbsp; Ayan Mukerji<br/>
-   <span>Actor:</span>&nbsp; Amitabh Bachchan, Ranbir Kapoor, Alia Bhatt, Mouni Roy <br/>
-   <span>Official Site :</span>&nbsp; N/A <br/>
-</div>
-<br>
-   {{detail.overview}}
-
-</div>-->
-
 
 <div class="container" *ngFor="let detail of movie">
   <div class="poster">
@@ -59,125 +27,17 @@
         <div class="header">Cast</div>
         <div class="list" >
           <div class="cast" *ngFor="let casts of cast | slice: 0:8">
-            <img [src]="urlImg + casts.profile_path" alt="">
+            <img *ngIf="casts.profile_path; else notFoundImage" [src]="urlImg + casts.profile_path" alt="">
             <label for="">{{casts.name}}</label>
           </div>
+
+          <ng-template #notFoundImage>
+            <img src="path_to_not_found_image.jpg" alt="Not Found">
+          </ng-template>
+
         </div>
       </div>
     </div>
   </div>
 </div>
 
-
-<!-- /* Ejemplo para hace card en la principal aqui Empieza */ -->
-<!--
-
-
-
-<div class="card"  *ngFor="let detail of movie">
-  <div class="poster">
-    <img  [src]="urlImg + detail.poster_path">
-  </div>
-  <div class="details">
-
-    <div  class="logo">{{detail.title}}</div>
-    <h3>Created by Neil Druckmann, Craig Mazin</h3>
-  <div class="rating">
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-regular fa-star"></i>
-    <span>4/5</span>
-  </div>
-  <div class="tags">
-     <span>Sci-fi</span>
-    <span>Action</span>
-  </div>
-  <div class="info">
-    <p>{{detail.overview}}</p>
-  </div>
-  <div class="cast">
-    <h4>Cast</h4>
-    <ul>
-      <li><img src="https://github.com/AnaProgramando/the_last_of_us_card/blob/main/cast1.png?raw=true"></li>
-      <li><img src="https://github.com/AnaProgramando/the_last_of_us_card/blob/main/cast2.png?raw=true"></li>
-      <li><img src="https://github.com/AnaProgramando/the_last_of_us_card/blob/main/cast3.png?raw=true"></li>
-      <li><img src="https://github.com/AnaProgramando/the_last_of_us_card/blob/main/cast4.png?raw=true"></li>
-      <li><img src="https://github.com/AnaProgramando/the_last_of_us_card/blob/main/cast5.png?raw=true"></li>
-    </ul>
-  </div>
- </div>
-</div>
-<a href="https://github.com/AnaProgramando" target="_blank">
-      <img class="ana-github-logo" alt="logo do git hub" src="https://media.giphy.com/media/KzJkzjggfGN5Py6nkT/giphy.gif?cid=ecf05e475f40lrorde868qq1yj6ukmcfjw4dhce8qgtphicu&rid=giphy.gif&ct=s">
-    </a> -->
-<!--
-<div class="container"  *ngFor="let detail of movie">
-    <div><h1>{{detail.original_title}}</h1></div>
-    <div class="img">
-      <img [src]="urlImg + detail.poster_path" alt="">
-    </div>
-    <div class="details">
-      <p> Fecha: {{detail.release_date | date: 'dd/MM/yyyy'}}</p>
-      <p> Genero: {{detail.genres }}</p>
-      <p> Duracion: {{detail.runtime}} min.</p>
-    </div>
-</div> -->
-
-<!-- /* Ejemplo para hace card en la principal aqui termina */ -->
-
-
-
-
-
-<!--
-<section>
-  <body *ngFor="let detail of movie" >
-     <main class="movie-info" style="height: 640px "  [ngStyle]="{'background-image': 'url(' + urlImg + detail.poster_path + ')',  'background-repeat': 'no-repeat','height':'
-     800px', 'background-size': '100% 1000px'  }" >
-      <div class="centered-container"  >
-        <img src="https://netology-code.github.io/Education-Show/img/title.png">
-        <div class="movie-meta">
-           <span class="movie-duration">2 сезона</span>
-           <span class="movie-year">2019</span>
-           <span class="movie-lang">РУС / ENG</span>
-         </div>
-        <p>История Лиры начинается в Оксфорде, где она живет под присмотром своего дяди лорда Азриела. Она ведет уединённую жизнь в окружении учителей и студентов. Когда судьба столкнет ее с загадочной миссис Коултер, девочка отправится в опасное и полное приключений путешествие в Лондон, а затем и дальше — на Северный полюс.<p>
-        <div class="btn-block">
-          <button class="btn-watch">Смотреть</button>
-          <button class="btn-wait">Посмотреть позже</button>
-        </div>
-      </div>
-    </main>
-
-      <div class="centered-container _dotted">
-        <section class="section movie-details">
-          <h2 class="section-header">Детали</h2>
-          <p class="movie-details-text"><span class="movie-details-highlight">В главных ролях:</span> Дафни Кин, Джеймс МакЭвой, Рут Уилсон, Лин-Мануэль Миранда, Кларк Питерс, Иэн Гелдер, Уилл Кин, Эрион Бакаре, Джорджина Кэмпбелл, Энн-Мэри Дафф</p>
-          <p class="movie-details-text"><span class="movie-details-highlight">Режиссер:</span> Джейми Чайлдс</p>
-          <p class="movie-details-text"><span class="movie-details-highlight">Жанр:</span> фэнтези, драма, приключения, семейный</p>
-          <p class="movie-details-text"><span class="movie-details-highlight">Время:</span> 1ч 00мин</p>
-        </section>
-
-        <section class="section popular">
-          <h2 class="section-header">Популярные</h2>
-          <div class="movies">
-            <a href="#" class="movie-card">
-              <h3 class="movie-title hidden">Золотой компас</h3>
-              <img src="https://netology-code.github.io/Education-Show/img/golden-compass.jpg" alt="movie poster with traveller and evil woman petting insect" class="movie-poster">
-              <div class="movie-meta">
-                <span class="movie-duration">1ч 53мин</span>
-                <span class="movie-year">2007</span>
-                <span class="movie-lang">rus</span>
-              </div>
-              <div class="movie-description">
-                <p class="movie-description-text">Двенадцатилетняя Лира отправляется в удивительное путешествие к Северному Полюсу, чтобы спасти своего похищенного друга.</p>
-              </div>
-            </a>
-          </div>
-        </section>
-      </div>
-  </body>
-</section>
- -->

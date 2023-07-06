@@ -18,42 +18,36 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    const token = this.loginService.getTokenFromLocalStorage();
-    if (token) {
-      this.requestToken = token;
+    const data = this.loginService.getAllDataFromLocalStorage();
+    if (data) {
+      this.username = data['tmdbUsername'];
+      this.password = data['tmdbPassword'];
+      this.requestToken = data['tmdbToken'];
+      this.loginComponent(); // Iniciar sesión automáticamente con los datos del LocalStorage
     }
-
-
   }
 
   onSubmit(): void {
     if (!this.requestToken) {
-      this.loginService.getRequestToken().subscribe((response : any ) =>{
+      this.loginService.getRequestToken().subscribe((response: any) => {
         this.requestToken = response.request_token;
-        this.login();
-      });
-    } else {
-      this.login();
+        this.loginComponent();
+      });}
+    else {
+      this.loginComponent();
     }
-    // this.loginService.getRequestToken().subscribe(
-    //   (response: any) => {
-    //     this.requestToken = response.request_token;
-    //     this.loginService.login(this.username, this.password, this.requestToken).subscribe({
-    //         next: response => console.log('Got response', response),
-    //         error: error => console.error('Error logging in', error),
-    //         complete: () => console.log('completed')
-    //   });
-    // })
   }
 
-  private login(): void {
-    this.loginService.login(this.username, this.password, this.requestToken).subscribe({
-      next: response => console.log('Got response', response),
+  private loginComponent(): void {
+    this.loginService.login(this.requestToken, this.username, this.password).subscribe({
+      next: response => {
+        console.log('Got response', response);
+        this.router.navigate(['movies']); // Redirigir a la página de películas después de iniciar sesión
+      },
       error: error => console.error('Error logging in', error),
       complete: () => console.log('completed')
     });
-    this.router.navigate(['movies'])
   }
+
 }
 

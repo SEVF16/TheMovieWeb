@@ -18,7 +18,7 @@ export class LoginService{
     return this.http.get<{ request_token: string }>(url);
   }
 
-  public login(username: string, password: string, requestToken: string): Observable<{ request_token: string }> {
+  public login(requestToken: string, username?: string, password?: string): Observable<{ request_token: string }> {
     const url = `${this.url}/authentication/token/validate_with_login?api_key=${this.apiKey}`;
     const body = {
       username,
@@ -28,6 +28,8 @@ export class LoginService{
     return this.http.post<{ request_token: string }>(url, body).pipe(
       tap((response: { request_token: string }) => {
         localStorage.setItem('tmdbToken', response.request_token);
+        localStorage.setItem('tmdbUsername', username || '');
+        localStorage.setItem('tmdbPassword', password || '');
       }),
       catchError((error: any) => {
         console.error(error);
@@ -36,41 +38,21 @@ export class LoginService{
     );
   }
 
-  public getTokenFromLocalStorage(): string | null {
-    return localStorage.getItem('tmdbToken');
+  public getAllDataFromLocalStorage(): { [key: string]: string } {
+    const data: { [key: string]: string } = {};
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key !== null) {
+        const value = localStorage.getItem(key);
+        if (value) {
+          data[key] = value;
+        }
+      }
+    }
+    return data;
   }
-  }
 
 
+}
 
-  // getRequestToken(): Observable<any> {
-  //   const getTokeUrl = `${this.url}/authentication/token/new?api_key=${this.apiKey}`;
-  //   return this.http.get<any>(getTokeUrl);
-  // }
-
-  // login(username: string, password: string, requestToken: string): Observable<any> {
-  //   const loginUrl = `${this.url}/authentication/token/validate_with_login?api_key=${this.apiKey}`;
-  //   const body = {
-  //     username,
-  //     password,
-  //     request_token: requestToken
-  //   };
-  //   return this.http.post<any>(loginUrl, body)
-  //   .pipe(tap((response: any) => {
-  //     localStorage.setItem('tmdbToken', response.request_token)
-  //   }),catchError(this.handleError)
-  // );
-  // }
-
-  // getTokenFromLocalStorage() {
-  //   return localStorage.getItem('tmdbToken');
-  // }
-
-  // private handleError(error: any): Observable<never> {
-  //   console.error(error);
-  //   return throwError(() => new Error ('Something went wrong'));
-  // }
-
-
-  //---------------------------------------------------------------------------------------
 
